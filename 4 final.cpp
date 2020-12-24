@@ -183,6 +183,49 @@ int main()
             }
             continue;
         }
+        update(A, B);
+        h = 0;
+        for (int i = 0; i <= 80; i++) {
+            if (B[i] == 1) {
+                h++;
+            }
+        }
+        if (h > 81) {
+            cout << endl << endl << "Finished";
+            return 0;
+        }
+        cout << endl << endl;
+        show(A);
+        cout << endl << endl;
+        s = 0;
+        for (int i = 0; i <= 80; i++) {
+            for (int j = 0; j <= 8; j++) {
+                if (A1[i][j] == A[i][j]) {
+                    s++;
+                }
+                else {
+                    A1[i][j] = A[i][j];
+                }
+            }
+        }
+        if (s == 729) {         //если больше ничего не вычеркивается и зарметка все еще допустимая - берем следующий по счету неоднозначный объект и берем в нем первую возможную метку
+            d = 0;
+            for (int i = 0; i <= 80; i++) {
+                if (B[i] == 1) {
+                    d++;
+                }
+                else {
+                    break;
+                }
+            }
+            copy(A, A3);
+            solution(A, d);
+            update(A, B);
+            cout << endl << endl;
+            show(A);
+            cout << endl << endl;
+            continue;
+        }
     }
     cout << endl << endl << "Finished";
     return 0;
