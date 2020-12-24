@@ -110,7 +110,37 @@ int main()
         }
         update(A, B);
     }
-    
+    h = 0;
+    for (int i = 0; i <= 80; i++) {             //проверка на полную заполненность матрицы
+        if (B[i] == 1) {
+            h++;
+        }
+    }
+    int d = 0;                                  //указатель на первый по счету объект, в котором не определена метка
+    for (int i = 0; i <= 80; i++) {
+        if (B[i] == 1) {
+            d++;
+        }
+        else {
+            break;
+        }
+    }
+    if (h == 81) {
+        cout << endl << endl;
+        show(A);
+        cout << endl << endl << "Finished";
+        return 0;
+    }
+    else {
+        copy(A, A3);                                        //копирование перед запуском поиска разметки
+        cout << endl << endl << "Looking for solution...";
+        solution(A, d);                                  //выбор первой возможной метки в объекте d
+        update(A, B);
+        cout << endl << endl;
+        show(A);
+        cout << endl << endl;
+    }
+    update(A, B);
     cout << endl << endl << "Finished";
     return 0;
 }
