@@ -43,6 +43,47 @@ int main()
             A2[i] = 9;
         }
     }
+    show(A);
+    int B[81];
+    for (int i = 0; i <= 80; i++) {
+        B[i] = 0;
+    }
+    char z = 'y';
+    while (z != 'n') {              //ввод начальной разметки
+        cout << endl;
+        int n;
+        cout << "Enter position (from 1 to 81) : ";
+        cin >> n;
+        B[n - 1] = 1;
+        int m;
+        cout << "Enter value (from 1 to 9) : ";
+        cin >> m;
+        fill(A, n - 1, m);
+        fill(A1, n - 1, m);
+        cout << endl << "Continue (y/n)? ";
+        cin >> z;
+    }
+    cout << endl << endl;
+    show(A);
+    cout << endl << endl;
+    int h = 0;
+    for (int i = 0; i <= 80; i++) {             //проверка на полную заполненность матрицы
+        if (B[i] == 1) {
+            h++;
+        }
+    }
+    if (h == 81) {
+        cout << endl << endl << "Done";
+        return 0;
+    }
+    clear(A, B, A2);                            //вычеркивание для начальной разметки
+    show(A);
+    if (check(A) == false) {                                            //проверка на недопустимость начальной разметки
+        cout << endl << endl << "Error - no solution for given data";
+        return 0;
+    }
+    update(A, B);
+    int s = 0;
     cout << endl << endl << "Finished";
     return 0;
 }
