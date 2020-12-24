@@ -84,6 +84,33 @@ int main()
     }
     update(A, B);
     int s = 0;
+    while (s != 729) {              //цикл - вычеркивание до тех пор, пока матрица не перестанет меняться
+        s = 0;
+        for (int i = 0; i <= 80; i++) {         //копирование матриц на каждом шаге
+            for (int j = 0; j <= 8; j++) {
+                if (A1[i][j] == A[i][j]) {
+                    s++;
+                }
+                else {
+                    A1[i][j] = A[i][j];
+                }
+            }
+        }
+        if (s == 729) {                         //проверка на неизменность матриц на данном и предыдущем шаге
+            cout << endl << endl << "Done";
+            getchar();
+            break;
+        }
+        cout << endl << endl;
+        clear(A, B, A2);
+        show(A);
+        if (check(A) == false) {
+            cout << endl << endl << "Error - no solution for given data";
+            return 0;
+        }
+        update(A, B);
+    }
+    
     cout << endl << endl << "Finished";
     return 0;
 }
