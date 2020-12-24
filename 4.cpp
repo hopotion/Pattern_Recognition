@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <stdio.h>
 void fill(int A[81][9], int i, int j);              //функция заполнения начальной разметкой
@@ -9,6 +10,7 @@ void solution(int A[81][9], int d);       //функция выбора метк
 void copy(int A[81][9], int A3[81][9]);             //функция копирования разметки
 void roleback(int A[81][9], int A3[81][9]);         //функция отката в случае неудачи при поиске разметки
 using namespace std;
+
 
 int main()
 {
