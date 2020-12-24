@@ -141,6 +141,49 @@ int main()
         cout << endl << endl;
     }
     update(A, B);
+    while (h != 81) {                   //цикл - поиск допустимой разметки
+        clear(A, B, A2);
+        update(A, B);
+        getchar();
+        if (check(A) == false) {        //если после вычеркивания с выбраной меткой в объекте d получили недопустимую разметку - сделать откат
+            cout << endl << endl << "Bad solution - doing a roleback";
+            roleback(A, A3);
+            update(A, B);
+            for (int i = d; i <= 80; i++) {
+                if (B[i] == 0) {
+                    for (int j = 0; j <= 8; j++) {
+                        if (A[i][j] != 0) {
+                            A[i][j] = 0;            //вычеркиваем ту метку, которую только что пробовали
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            copy(A, A4);
+            update(A4, B);
+            clear(A4, B, A2);
+            if (check(A4) == false) {                                           //если метка была последней в выбраном объекте - решение не найдено
+                cout << endl << endl << "Error - no solution for given data";
+                return 0;
+            }
+            copy(A, A3);                                                    //копирование измененной матрицы А
+            cout << endl << endl << "Looking for a different solution...";
+            cout << endl << endl;
+            solution(A, d);              //выбор следующей возможной метки в объекте d
+            update(A, B);
+            show(A);
+            cout << endl << endl;
+            update(A, B);
+            h = 0;
+            for (int i = 0; i <= 80; i++) {
+                if (B[i] == 1) {
+                    h++;
+                }
+            }
+            continue;
+        }
+    }
     cout << endl << endl << "Finished";
     return 0;
 }
